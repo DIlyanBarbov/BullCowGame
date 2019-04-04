@@ -1,38 +1,28 @@
+#pragma once
 #include "FBullCowGame.h"
 #include <map>
 #define TMap std::map
 
-FBullCowGame::FBullCowGame()
-{
-	reset();
-}
+FBullCowGame::FBullCowGame() { reset(); } // default constructor
 
+int32 FBullCowGame::getCurrentTry() const { return myCurrentTry; }
+int32 FBullCowGame::getHiddenWordLength() const { return myHiddenWord.length(); }
+bool FBullCowGame::isGameWon() const { return bGameIsWon; }
+
+int32 FBullCowGame::getMaxTries() const 
+{ 
+	TMap<int32, int32> wordLengthToMaxTries{ {3,4},{4,7},{5,10},{6,15},{7,20} };
+	return wordLengthToMaxTries[getHiddenWordLength()];
+}
 
 
 void FBullCowGame::reset()
 {
-	const FString hiddenWord = "tiger";
+	const FString hiddenWord = "plane";
 	myHiddenWord = hiddenWord;
 	myCurrentTry = 1;
-	constexpr int32 maxTries = 5;
-	myMaxTries = maxTries;
+	bGameIsWon = false;
 	return;
-}
-
-int FBullCowGame::getMaxTries() const
-{
-	return myMaxTries;
-}
-
-int FBullCowGame::getCurrentTry() const
-{
-	return myCurrentTry;
-}
-
-int32 FBullCowGame::getHiddenWordLength() const
-{
-	int32 hiddenWordLength = myHiddenWord.length();
-	return hiddenWordLength;
 }
 
 bool FBullCowGame::isIsogram(FString guess) const
@@ -46,7 +36,7 @@ bool FBullCowGame::isIsogram(FString guess) const
 		if (letterSeen[letter])// if the letter is in the map
 		{
 			return false;// we do NOT have an isogram
-		} // otherwise
+		} 
 		else letterSeen[letter] = true; // add the letter to the map as seen	
 	}
 }
@@ -60,11 +50,6 @@ bool FBullCowGame::isLowercase(FString guess) const
 		if (islower(letter)) return true;
 		else return false;
 	}
-}
-
-bool FBullCowGame::isGameWon() const
-{
-	return bGameIsWon;
 }
 
 EGuessStatus FBullCowGame::checkGuessValidity(FString guess) const
@@ -112,9 +97,8 @@ FBullCowCount FBullCowGame::submitValidGuess(FString guess)
 	return bullCowCount;
 }
 
-
-/*std::string FBullCowGame::generateIsogram(int)
+FString FBullCowGame::generateIsogram(int) // TODO generate isogram depending on user input
 {
 	return std::string();
 }
-*/
+

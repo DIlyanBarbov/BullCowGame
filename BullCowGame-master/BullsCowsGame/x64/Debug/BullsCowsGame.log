@@ -1,2 +1,8 @@
-﻿  main.cpp
+﻿  FBullCowGame.cpp
+d:\visualstudio17\gamescpp\section_02\bullcowgame-master\bullscowsgame\fbullcowgame.cpp(8): warning C4267: 'return': conversion from 'size_t' to 'int32', possible loss of data
+d:\visualstudio17\gamescpp\section_02\bullcowgame-master\bullscowsgame\fbullcowgame.cpp(81): warning C4267: 'initializing': conversion from 'size_t' to 'int32', possible loss of data
+  main.cpp
+  Generating Code...
+d:\visualstudio17\gamescpp\section_02\bullcowgame-master\bullscowsgame\fbullcowgame.cpp(52): warning C4715: 'FBullCowGame::isLowercase': not all control paths return a value
+d:\visualstudio17\gamescpp\section_02\bullcowgame-master\bullscowsgame\fbullcowgame.cpp(41): warning C4715: 'FBullCowGame::isIsogram': not all control paths return a value
   BullsCowsGame.vcxproj -> D:\VisualStudio17\gamescpp\Section_02\BullCowGame-master\x64\Debug\BullsCowsGame.exe

@@ -32,14 +32,12 @@ public:
 	EGuessStatus checkGuessValidity(FString guess) const;
 	
 	
-	void reset(); // TODO make a more rich return value			  
+	void reset();		  
 	FBullCowCount submitValidGuess(FString guess);
-	// TODO provide a method generating an isogram with inputed number of characters
-	//std::string generateIsogram(int32);
+	FString generateIsogram(int);
 	// ^^ please try ignore this and focus on the interface ^^
 private:
 	int32 myCurrentTry;
-	int32 myMaxTries;
 	FString myHiddenWord;
 	bool bGameIsWon;
 
