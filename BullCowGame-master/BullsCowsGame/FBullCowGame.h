@@ -30,7 +30,8 @@ public:
 	int32 getHiddenWordLength() const;
 	bool isGameWon() const;
 	EGuessStatus checkGuessValidity(FString guess) const;
-	bool checkIsogram(FString guess);
+	
+	
 	void reset(); // TODO make a more rich return value			  
 	FBullCowCount submitValidGuess(FString guess);
 	// TODO provide a method generating an isogram with inputed number of characters
@@ -43,4 +44,5 @@ private:
 	bool bGameIsWon;
 
 	bool isIsogram(FString guess) const;
+	bool isLowercase(FString guess) const;
 };

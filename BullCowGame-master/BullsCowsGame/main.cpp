@@ -49,7 +49,6 @@ void playGame()
 		BullCowCount = BCGame.submitValidGuess(guess);
 		std::cout << "Bulls =" << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
-		returnGuess(guess);
 	}
 	callGameSummary();
 	return;
@@ -60,8 +59,17 @@ void printInfo()
 { 
 	// TODO update the max # of tries depending on the length of the isogram
 	std::cout << "Welcome to Bulls and Cows Game, a fun word game.\n";
+	std::cout << std::endl;
+	std::cout << "          }   {         ___ " << std::endl;
+	std::cout << "          (o o)        (o o) " << std::endl;
+	std::cout << "   /-------\\ /          \\ /-------\\ " << std::endl;
+	std::cout << "  / | BULL |O            O| COW  | \\ " << std::endl;
+	std::cout << " *  |-,--- |              |------|  * " << std::endl;
+	std::cout << "    ^      ^              ^      ^ " << std::endl;
+	std::cout << std::endl;
 	std::cout << "Can you guess the " << BCGame.getHiddenWordLength() << " letter isogram I am thinking of?\n";
 	std::cout << std::endl;
+	
 	return;
 }
 
@@ -79,13 +87,13 @@ FText  getValidGuess()
 		switch (Status)
 		{
 		case EGuessStatus::Wrong_Length:
-			std::cout << "Please enter a " << BCGame.getHiddenWordLength() << " letter word.\n";
+			std::cout << "Please enter a " << BCGame.getHiddenWordLength() << " letter word.\n\n";
 			break;
 		case EGuessStatus::Not_Lowercase:
-			std::cout << "Please enter only lowercase chars.\n";
+			std::cout << "Please enter only lowercase chars.\n\n";
 			break;
 		case EGuessStatus::Not_Isogram:
-			std::cout << "Please enter a word without repeating letters.\n";
+			std::cout << "Please enter a word without repeating letters.\n\n";
 			break;
 		default:
 			break;
@@ -97,19 +105,19 @@ FText  getValidGuess()
 // return guess
 void returnGuess(FText  guess)
 {
-	std::cout << "Your guess is: " << guess << std::endl << std::endl;
+	std::cout << "Your last guess was: " << guess << std::endl << std::endl;
 	return;
 }
 
 bool askToPlay()
 { 
 	BCGame.reset();
-	std::cout << "Do you want to play again with the same hidden word?" << " yes/no" << std::endl;
+	std::cout << "Do you want to play again with the same hidden word?" << " yes/no\n";
 	FText  response = "";
 	getline(std::cin, response);
+	std::cout << std::endl;
 	if (putchar(tolower(response[0]) == 'y')) return true;
 	else return false;
-
 }
 void callGameSummary()
 {

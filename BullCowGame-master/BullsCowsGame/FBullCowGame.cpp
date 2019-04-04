@@ -7,12 +7,14 @@ FBullCowGame::FBullCowGame()
 	reset();
 }
 
+
+
 void FBullCowGame::reset()
 {
-	const FString hiddenWord = "ants";
+	const FString hiddenWord = "tiger";
 	myHiddenWord = hiddenWord;
 	myCurrentTry = 1;
-	constexpr int32 maxTries = 8;
+	constexpr int32 maxTries = 5;
 	myMaxTries = maxTries;
 	return;
 }
@@ -36,27 +38,28 @@ int32 FBullCowGame::getHiddenWordLength() const
 bool FBullCowGame::isIsogram(FString guess) const
 {
 	// treat 0 and 1 letter words as isograms
-
-	// loop through all the letters of the word
-		// if the letter is in the map
-			// we do NOT have an isogram
-		// otherwise
-			// add the letter to the map as seen
-
-	int32 guessLength = guess.length();
-	TMap <char, bool> letterSeen;
-	TMap<char, bool>::iterator lt;
+	if (guess.length() <= 1) { return true; }
+	TMap<char, bool> letterSeen; // setup our map
 	
-	for (int32 i = 0; i < guessLength; i++)
+	for (auto letter : guess)// for all letters in the word
 	{
-		letterSeen.emplace(guess[i], true);
-		lt = letterSeen.find(guess[i]);
-		if (lt == letterSeen.end())
+		if (letterSeen[letter])// if the letter is in the map
 		{
-			return false;
-		}
+			return false;// we do NOT have an isogram
+		} // otherwise
+		else letterSeen[letter] = true; // add the letter to the map as seen	
 	}
-	return true;
+}
+
+bool FBullCowGame::isLowercase(FString guess) const
+{
+	if (guess.length() <= 1) { return true; }
+	for (auto letter : guess) // for every letter in the guess
+	{
+		
+		if (islower(letter)) return true;
+		else return false;
+	}
 }
 
 bool FBullCowGame::isGameWon() const
@@ -70,9 +73,9 @@ EGuessStatus FBullCowGame::checkGuessValidity(FString guess) const
 	{
 		return EGuessStatus::Not_Isogram; 
 	}
-	else if (false) // if the guess isn't all lowercase
+	else if (!isLowercase(guess)) // if the guess isn't all lowercase
 	{
-		return EGuessStatus::Not_Lowercase; //TODO write function 
+		return EGuessStatus::Not_Lowercase;
 	}
 	else if (guess.length()!= getHiddenWordLength())  // if the guess length is wrong
 	{
